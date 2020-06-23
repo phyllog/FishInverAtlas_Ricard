@@ -5,4 +5,4 @@ Ricard and Shachell 2013 https://waves-vagues.dfo-mpo.gc.ca/Library/349264.pdf d
 2) archiving code at DFO Maritimes Region. 
 In 2020 Dan Ricard and Nancy Shackell shared code with Catalina Gomez to reproduce its outputs. 
 
-This repo will update code assembled in Ricard and Shachell (2013) using new tools (e.g. mar.wrangling, csasdown) and developments.  
+This repo will update code assembled in Ricard and Shackell (2013) using new tools (e.g. mar.wrangling, csasdown) and developments.  
