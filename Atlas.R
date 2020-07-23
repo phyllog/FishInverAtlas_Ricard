@@ -19,27 +19,28 @@ print(paste("Script Atlas.R started: ", Sys.time()))
 #  path.ATLAS=file.path("C:/Documents and Settings/RicardD/My Documents/Dropbox/ATLAS_poissons_SS") ## at BIO
 #  path.ATLAS=file.path("D:/Dropbox/ATLAS_poissons_SS") ## on my Acer notebook
 #  path.ATLAS=file.path("C:/Users/shackelln/Dropbox/ATLAS_poissons_SS") ## at BIO
-  path.ATLAS=file.path("C:/RProjects/Ricard_ATLAS")
+  path.ATLAS=file.path("C:/RProjects/FishInverAtlas_Ricard")
 ## open ODBC connection to Oracle database
 	require(RODBC, quietly=TRUE, warn.conflicts = FALSE)
-  chan <- odbcConnect(dsn='biobank', uid='ricardd', pwd='1020wel99')
-	#chan <- odbcConnect("ptran", uid="GOMEZC", pwd="Branch22")
+  #chan <- odbcConnect(dsn='biobank', uid='ricardd', pwd='1020wel99')
+	chan <- odbcConnect("ptran", uid="GOMEZC", pwd="Branch22")
 	#chan <- odbcConnect(dsn='biobank', uid='atlas', pwd='')
 	library(RODBC)
 	# source the code that defines the data extraction functions
-	source(file.path(path.ATLAS, "/FunctionsR/data-extract.R"))
+	source(file.path(path.ATLAS, "FunctionsR/data-extract.R"))
 
 # source the code that defines the function for each figure
-  source(file.path(path.ATLAS, "/FunctionsR/figures.R"))
+  source(file.path(path.ATLAS, "FunctionsR/figures.R"))
 
 # source the code that defines the function for habitat suitability
-  source(file.path(path.ATLAS, "/FunctionsR/habitat-suitability.R"))
+  source(file.path(path.ATLAS, "FunctionsR/habitat-suitability.R"))
 
 # source the code that sets all the mapping functions and data requirements such as polygons and masks, this file also creates a survey map with strata polygons and NAFO divisions
-	source(file.path(path.ATLAS, "/Mapping/SUMMER-strata.R"))
+	source(file.path(path.ATLAS, "Mapping/SUMMER-strata.R"))
   
 # source the code that computes the survey summaries (e.g. number of sets per stratum per year, etc.) and generates the summary tables to appear at the front of the atlas
-	source(file.path(path.ATLAS, "/FunctionsR/summaries.R"))
+#	The following line updates the file Report/species-list-final.csv
+	source(file.path(path.ATLAS, "FunctionsR/summaries.R"))
 
 ## actual function calls for species-level analyses
 ## first call is to generate the data files for each species
