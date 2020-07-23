@@ -201,8 +201,6 @@ data.extract <- function(extract.num=c(1:10), spec.num, writexls=FALSE) {
 	
 	}
 	
-
-	
 	
 	if(writexls)# write a massive single spreadsheet with each data frame as a worksheet
 	{
