@@ -23,8 +23,7 @@ print(paste("Script Atlas.R started: ", Sys.time()))
 ## open ODBC connection to Oracle database
 	require(RODBC, quietly=TRUE, warn.conflicts = FALSE)
   source("C:/RProjects/FishInverAtlas_Ricard/FunctionsR/chan.R")
-  #chan <- odbcConnect(dsn='biobank', uid='', pwd='')
-	library(RODBC)
+  # chan <- odbcConnect(dsn='biobank', uid='', pwd='')
 	# source the code that defines the data extraction functions
 	source(file.path(path.ATLAS, "FunctionsR/data-extract.R"))
 

@@ -118,6 +118,12 @@ y.2010=summary.table.matrix[,41],
 y.2011=summary.table.matrix[,42],
 y.2012=summary.table.matrix[,43],
 y.2013=summary.table.matrix[,44],
+y.2014=summary.table.matrix[,45],
+y.2015=summary.table.matrix[,46],
+y.2016=summary.table.matrix[,47],
+y.2017=summary.table.matrix[,48],
+y.2018=summary.table.matrix[,49],
+y.2019=summary.table.matrix[,50],
 stringsAsFactors=FALSE
 )
 
@@ -175,7 +181,13 @@ sum(summary.table.df$y.2009),
 sum(summary.table.df$y.2010),
 sum(summary.table.df$y.2011),
 sum(summary.table.df$y.2012),
-sum(summary.table.df$y.2013)
+sum(summary.table.df$y.2013),
+sum(summary.table.df$y.2014),
+sum(summary.table.df$y.2015),
+sum(summary.table.df$y.2016),
+sum(summary.table.df$y.2017),
+sum(summary.table.df$y.2018),
+sum(summary.table.df$y.2019)
 ))
 
 summary.table.df$totals <- rowSums(summary.table.df[c(4:46)])
@@ -189,22 +201,26 @@ summary.xtable <- xtable(summary.table.df)
 print.xtable(summary.xtable, type='html', file=filename, html.table.attributes=c("border=0"), include.rownames=FALSE)
 print.xtable(summary.xtable, type='latex', file=filename.tex, include.rownames=FALSE, size='tiny')
 
-## break into 3 tables each covering 15 years
+## break into 3 tables each covering 15 years + Atlas update since publication
 summary.xtable1 <- xtable(summary.table.df[,c(1,2,3,4:18)], digits=0, caption="Number of tows conducted in each stratum during the period 1970 to 1984")
 summary.xtable2 <- xtable(summary.table.df[,c(1,2,3,19:33)], digits=0, caption="Number of tows conducted in each stratum during the period 1985 to 1999")
 summary.xtable3 <- xtable(summary.table.df[,c(1,2,3,34:48)], digits=0, caption="Number of tows conducted in each stratum during the period 2000 to 2013")
+summary.xtable4 <- xtable(summary.table.df[,c(1,2,3,48:53)], digits=0, caption="Number of tows conducted in each stratum during the period 2014 to 2019")
 
 fn.tex1 <- "Atlas_summary_table1.tex"
 fn.tex2 <- "Atlas_summary_table2.tex"
 fn.tex3 <- "Atlas_summary_table3.tex"
+fn.tex4 <- "Atlas_summary_table4.tex"
 
 filename.tex1 <- file.path(path.Figures, fn.tex1)
 filename.tex2 <- file.path(path.Figures, fn.tex2)
 filename.tex3 <- file.path(path.Figures, fn.tex3)
+filename.tex4 <- file.path(path.Figures, fn.tex4)
 
 print.xtable(summary.xtable1, type='latex', file=filename.tex1, include.rownames=FALSE, size='scriptsize', booktabs=TRUE, caption.placement='top')
 print.xtable(summary.xtable2, type='latex', file=filename.tex2, include.rownames=FALSE, size='scriptsize', booktabs=TRUE, caption.placement='top')
 print.xtable(summary.xtable3, type='latex', file=filename.tex3, include.rownames=FALSE, size='scriptsize', booktabs=TRUE, caption.placement='top')
+print.xtable(summary.xtable4, type='latex', file=filename.tex4, include.rownames=FALSE, size='scriptsize', booktabs=TRUE, caption.placement='top')
 
 ## taxonomic summary
 ## list of species 
@@ -230,10 +246,9 @@ colnames(species.all)[colnames(species.all) == 'CODE'] <- 'SPEC'
 catch.summer <- merge(merge(tows.summer.df, all.catch, 
                             by.x=c('MISSION','SETNO'), 
                             by.y=c('MISSION','SETNO')), 
-                      species.all, 'SPEC', all.y=FALSE)
+                      species.all, all.y=FALSE, 'SPEC')
 
 catch.summer <- droplevels(catch.summer)
-
 catch.by.species <- table(catch.summer$SPEC)
 catch.by.species.df <- data.frame(catch.by.species)
 catch.by.scien <- table(catch.summer$SCIEN)
@@ -274,9 +289,7 @@ oo <- order(df.for.xtable$nrecords, decreasing=TRUE)
 
 spec.xtable.df <- df.for.xtable[oo,c(5,13,14,1,4,10,9,8,15)]
 
-
 ## some common names are missing and others are wrong, fix these manually
-
 
 # fix french names
 spec.xtable.df[spec.xtable.df$spec==10,]$FAO_F_COMMON_NAME <- "Morue franche"
